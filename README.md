@@ -1,18 +1,124 @@
-# Vue 3 + TypeScript + Vite
+📦 Products Table with Pagination, Sorting & Filtering (Vanilla Vue)
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This is a single-file Vue component that displays a products table with:
 
-## Recommended IDE Setup
+✅ Pagination (selectable rows per page)
+✅ Global and per-column filtering
+✅ Sorting on every column
+✅ Responsive layout (no horizontal scroll)
+✅ No third-party libraries (pure Vue + CSS)
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+The component uses the API:
 
-## Type Support For `.vue` Imports in TS
+https://dummyjson.com/products?limit=100
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+📋 Features
+Feature	Description
+Pagination	Custom pagination with page size selector
+Sorting	Click table header to sort asc/desc
+Filtering	Global search + individual column filters
+Responsive	Text wraps, no horizontal scroll
+Lightweight	No external libraries
+🧱 Installation
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+Ensure you have Vue 3 CLI or Vite setup.
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+Add the provided Vue file (e.g., ProductsTable.vue) into your project.
+
+Import and use the component.
+
+npm install
+npm run dev
+
+📁 File Structure
+src/
+├── components/
+│   └── ProductsTable.vue
+├── App.vue
+└── main.js
+
+🔌 API Used
+const fetchProducts = async () => {
+  try {
+    const response = await fetch("https://dummyjson.com/products?limit=100");
+    const data = await response.json();
+    products = data.products;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+🧠 How It Works (Summary)
+
+Fetching Data
+Fetch products from API and cache them in memory.
+
+Filtering
+
+Global search on title.
+
+Individual per-column search inputs.
+
+Sorting
+
+Click a header to sort by that column.
+
+Click again to toggle ascending/descending.
+
+Pagination
+
+Select page size from a dropdown.
+
+Navigate with Prev/Next buttons.
+
+Responsive Layout
+
+Table fills width and text wraps inside cells.
+
+No horizontal scrollbar unless absolutely needed.
+
+🧱 Component Properties
+Name	Type	Default	Description
+currentPage	Number	1	Active page number
+perPage	Number	10	Rows per page
+perPageOptions	Array	[5,10,15,20,50]	Dropdown options
+searchText	String	""	Global search term
+columnFilters	Object	{…}	Per-column filters
+sortKey	String	""	Active sort field
+sortOrder	String	"asc"	Sort direction
+⏳ Screenshots
+
+(Add your own screenshots here if desired)
+
+🏷️ Usage Example
+<template>
+  <ProductsTable />
+</template>
+
+<script>
+import ProductsTable from "@/components/ProductsTable.vue";
+
+export default {
+  components: {
+    ProductsTable
+  }
+};
+</script>
+
+💡 Tips
+
+You can extend caching to localStorage if needed.
+
+Images, nested fields or custom formats can be added easily.
+
+Add reset filters/sort buttons for better UX.
+
+📦 Dependencies
+
+✔ Vue 3
+❌ No UI framework (like Bootstrap/Tailwind)
+❌ No external table plugin
+
+🔐 License
+
+This project is open-source and available for reuse.
